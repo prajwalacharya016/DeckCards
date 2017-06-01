@@ -5,50 +5,51 @@ import java.util.Collections;
 import java.util.List;
 
 public class Deck {
-	private Cards [] deck = new Cards[52];
+	private List<Cards> deck = new ArrayList<Cards>();
 
-	public Cards[] getDeck() {
+	public List<Cards> getDeck() {
 		return deck;
 	}
 	
-	public Cards[] getColor(String color)
+	public void add(Cards card){
+		deck.add(card);
+	}
+	
+	public List<Cards> getColor(String color)
 	{
-		Cards [] coloredCard = new Cards[26];
-		int j=0;
-		for (int i=0; i<52; i++)
+		List<Cards> coloredCard = new ArrayList<Cards>();
+		for (int i=0; i<deck.size(); i++)
 		{
-			if(deck[i].getColor().equals(color))
-				coloredCard[j]=deck[i];
+			if(deck.get(i).getColor().equals(color))
+				coloredCard.add(deck.get(i));
 		}
 		
 		return coloredCard;
 	}
 	
-	public Cards[] getType(String type)
+	public List<Cards> getType(String type)
 	{
-		Cards [] typedCard = new Cards[13];
-		int j=0;
-		for (int i=0; i<52; i++)
+		List<Cards> typedCard = new ArrayList<Cards>();
+		for (int i=0; i<deck.size(); i++)
 		{
-			if(deck[i].getType().equals(type))
-				typedCard[j]=deck[i];
+			if(deck.get(i).getType().equals(type))
+				typedCard.add(deck.get(i));
 		}
 		
 		return typedCard;
 	}
 	
+	
 	public void shuffle()
 	{
-		List<Cards> solution = new ArrayList<>();
-		for (int i = 1; i <= 52; i++) {
-		    solution.add(deck[i]);
-		}
-		Collections.shuffle(solution);
+		Collections.shuffle(deck);
+		System.out.println("!!!!Shuffling!!!");
 		
-		for(int i=0; i<=52; i++)
-		{
-			deck[i]=solution.get(i);
-		}
-		
+	}
+	
+	void print()
+	{
+		for (int i=0; i<deck.size(); i++)
+			System.out.println(deck.get(i));
 	}
 }
